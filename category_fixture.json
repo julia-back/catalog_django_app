@@ -1,0 +1,26 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Продукты",
+        "description": "Продукты на любой случай"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Зоотовары",
+        "description": "Товары для ваших любимцев"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name": "Мебель",
+        "description": "Мебель для дома"
+    }
+}
+]
