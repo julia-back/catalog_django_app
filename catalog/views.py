@@ -5,7 +5,11 @@ from . import models
 
 def home_page(request):
     if request.method == "GET":
-        return render(request, "catalog/home_page.html")
+        products = models.Product.objects.all()
+        context = {
+            "products": products
+        }
+        return render(request, "catalog/home_page.html", context=context)
 
 
 def contacts(request):
