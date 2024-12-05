@@ -6,7 +6,10 @@
 <div class="container mt-5">
     <h1>{{product.name}}</h1>
     <ul class="list-group mt-3">
-        <li class="list-group-item">{{product.product_photo | default:'[Photo]'}}</li>
+        <li class="list-group-item">
+            <img src="" class="object-fit-none border rounded" alt="...">
+            {{product.product_photo | default:'[Photo]'}}
+        </li>
         <li class="list-group-item">{{product.category}}</li>
         <li class="list-group-item">Цена: {{product.price}}</li>
         <li class="list-group-item">
