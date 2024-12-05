@@ -3,13 +3,11 @@
 {% block title %}{{product.name}}{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-3">
     <h1>{{product.name}}</h1>
     <ul class="list-group mt-3">
         <li class="list-group-item">
-            <img src="" class="object-fit-none border rounded" alt="...">
-
-            {{product.product_photo | default:'[Photo]'}}
+            <img src="{{product.product_photo.url | default:'[Photo]'}}" class="border rounded mx-auto d-block" style="max-width: 40%; height: 40%;" alt="...">
         </li>
         <li class="list-group-item">{{product.category}}</li>
         <li class="list-group-item">Цена: {{product.price}}</li>
