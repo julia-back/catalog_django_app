@@ -3,46 +3,45 @@
 {% block title %}Контакты{% endblock %}
 
 {% block content %}
-        <h2 class="text-center p-5">Контакты</h2>
-        <div class="row">
-            <div class="col-6">
-                <div class="card p-3">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Имя</label>
-                            <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email-form" class="form-label">Почта</label>
-                            <input type="email" name="email" class="form-control" id="email-form">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Сообщение</label>
-                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Отправить</button>
-                    </form>
-
-
+<h2 class="text-center p-5">Контакты</h2>
+<div class="row">
+    <div class="col-6">
+        <div class="card text-bg-light p-3">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Имя</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp">
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="p-3 mb-3">
-                    <h5>Наши контакты</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    venlam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cilum dolore eu fugiat nulla parlatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum.</p>
-                <p></p>
-                <p>While these feedback styles cannot be styled with CSS, you can still
-                    customize the feedback text through JavaScript.</p>
+                <div class="mb-3">
+                    <label for="email-form" class="form-label">Почта</label>
+                    <input type="email" name="email" class="form-control" id="email-form">
                 </div>
-
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Сообщение</label>
+                    <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card text-bg-light mb-3">
+            <div class="card-header"><h5 class="mt-2 mb-2">Наши контакты</h5></div>
+            <div class="card-body">
+                {% for contact in contacts %}
+                <div class="row p-2">
+                    <div class="col">
+                        {{contact.city}}
+                    </div>
+                    <div class="col">
+                        {{contact.phone_number}}
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
+</div>
 {% endblock %}
