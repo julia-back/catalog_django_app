@@ -9,22 +9,7 @@
 <body>
 <div class="row">
     <div class="col-2">
-        <div class="text-bg-dark" style="height: 100vh;">
-            <div class="list-group">
-                <nav class="navbar bg-dark">
-                    <div class="container">
-                        <a class="navbar-brand text-light" href="#">
-                            <img src="/static/images/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
-                            Меню
-                        </a>
-                    </div>
-                </nav>
-                <a href="#" class="list-group-item list-group-item-action text-bg-dark border-dark">Главная</a>
-                <a href="#" class="list-group-item list-group-item-action text-bg-dark border-dark">Категория</a>
-                <a href="#" class="list-group-item list-group-item-action text-bg-dark border-dark">Заказы</a>
-                <a href="#" class="list-group-item list-group-item-action text-bg-dark border-dark">Контакты</a>
-            </div>
-        </div>
+        {% include 'catalog/includes/menu.html' %}
     </div>
     <div class="col-10 p-5">
         {% block content %}{% endblock %}
