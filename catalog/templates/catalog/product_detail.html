@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}{{product.name}}{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1>{{object.name}}</h1>
+    <ul class="list-group mt-3">
+        <li class="list-group-item">
+            <img src="{{object.product_photo.url | default:'[Photo]'}}" class="border rounded mx-auto d-block" style="max-width: 40%; height: 40%;" alt="...">
+        </li>
+        <li class="list-group-item">{{object.category}}</li>
+        <li class="list-group-item">Цена: {{object.price}}</li>
+        <li class="list-group-item">
+            Описание:
+            <p>{{object.description}}</p>
+        </li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,35 +1,27 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from . import models
+from django.views.generic import ListView, DetailView, FormView, TemplateView
+from .models import Product, Contacts
+from .forms import ContactsForm
+from django.urls import reverse_lazy
 
 
-def home_page(request):
-    if request.method == "GET":
-        products = models.Product.objects.all()
-        context = {
-            "products": products
-        }
-        return render(request, "catalog/home_page.html", context=context)
+class ProductListView(ListView):
+    model = Product
+    template_name = "catalog/home.html"
 
 
-def contacts(request):
-    if request.method == "GET":
-        contacts_ = models.Contacts.objects.all()
-        context = {
-            "contacts": contacts_
-        }
-        return render(request, "catalog/contacts.html", context=context)
-    else:
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
-        return HttpResponse(f"Спасибо, {name}!\n Мы получили ваше сообщение {message}\n"
-                            f"Ответ возможно придет на почту: {email}.")
+class ProductDetailView(DetailView):
+    model = Product
 
 
-def product_info(request, product_id):
-    product = models.Product.objects.get(id=product_id)
-    context = {
-        "product": product
-    }
-    return render(request, "catalog/product_info.html", context=context)
+class ContactsListView(ListView):
+    model = Contacts
+
+
+# class ContactsFormView(FormView):
+#     form_class = ContactsForm
+#     success_url = reverse_lazy("catalog:home")
+#
+#     def form_valid(self, form):
+#         # This method is called when valid form data has been POSTed.
+#         # It should return an HttpResponse.
+#         form.send_email()
