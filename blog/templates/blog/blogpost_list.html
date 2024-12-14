@@ -5,7 +5,6 @@
 {% block content %}
 <div class="row">
     {% for post in object_list %}
-    {% if post.is_published == True %}
     <div class="col">
         <div class="card m-5">
             <img src="{{ post.preview_img.url }}" class="card-img-top w-100" style="height: 10rem" alt="...">
@@ -15,7 +14,6 @@
                 <a href="{% url 'blog:blog_detail' post.pk %}" class="btn btn-primary">Перейти к статье</a>
             </div>
         </div>
-        {% endif %}
         {% endfor %}
     </div>
 </div>
