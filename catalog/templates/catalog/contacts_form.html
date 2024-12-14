@@ -1,5 +1,5 @@
 <div class="card text-bg-light p-3">
-    <form method="post" action="">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Имя</label>
@@ -7,7 +7,7 @@
                    aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-            <label for="email-form" class="form-label">Почта</label>
+            <label for="email-form" class="form-label">E-mail</label>
             <input type="email" name="email" class="form-control" id="email-form">
         </div>
         <div class="mb-3">
