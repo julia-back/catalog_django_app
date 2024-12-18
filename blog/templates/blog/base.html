@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}Стандартный заголовок{% endblock %}</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="row">
+    <div class="col">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand">Меню</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'blog:blog_list' %}">Все посты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:blog_create' %}">Создать пост</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        Перейдите к просмотру или созданию постов
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    {% block content %}{% endblock %}
+</div>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,35 +1,28 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-from . import models
+from django.shortcuts import render
+from django.views import View
+from django.views.generic import ListView, DetailView
+from .models import Product, Contacts
 
 
-def home_page(request):
-    if request.method == "GET":
-        products = models.Product.objects.all()
-        context = {
-            "products": products
-        }
-        return render(request, "catalog/home_page.html", context=context)
+class ProductListView(ListView):
+    model = Product
+    template_name = "catalog/home.html"
 
 
-def contacts(request):
-    if request.method == "GET":
-        contacts_ = models.Contacts.objects.all()
-        context = {
-            "contacts": contacts_
-        }
-        return render(request, "catalog/contacts.html", context=context)
-    else:
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class ContactsView(View):
+
+    def get(self, request):
+        contacts = Contacts.objects.all()
+        context = {"object_list": contacts}
+        return render(request, "catalog/contacts_list.html", context=context)
+
+    def post(self, request):
         name = request.POST.get("name")
         email = request.POST.get("email")
         message = request.POST.get("message")
-        return HttpResponse(f"Спасибо, {name}!\n Мы получили ваше сообщение {message}\n"
-                            f"Ответ возможно придет на почту: {email}.")
-
-
-def product_info(request, product_id):
-    product = models.Product.objects.get(id=product_id)
-    context = {
-        "product": product
-    }
-    return render(request, "catalog/product_info.html", context=context)
+        return HttpResponse(f"Спасибо, {name} ({email})! Ваше сообщение получено. ({message})")

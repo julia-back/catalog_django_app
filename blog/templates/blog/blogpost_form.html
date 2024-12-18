@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Создать пост{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+        <div class="card p-5">
+            <h5 class="card-title">Создание поста</h5>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="{% url 'blog:blog_list' %}" class="btn btn-secondary">Отмена</a>
+            </form>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+{% endblock %}

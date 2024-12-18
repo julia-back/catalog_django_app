@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col justify-text-center">
+        <div class="card m-5">
+            <img src="{{ object.preview_img.url }}" class="card-img-top w-100" style="height: 25rem" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ object.title }}</h5>
+                <p class="card-text">{{ object.content }}</p>
+                <a href="{% url 'blog:blog_update' object.pk %}" class="btn btn-primary">Редактировать</a>
+                <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+{% endblock %}
