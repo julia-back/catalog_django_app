@@ -1,6 +1,5 @@
 from django.forms import ModelForm, ValidationError
 from .models import Product
-import os
 
 
 banned_worlds = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция", "радар"]
