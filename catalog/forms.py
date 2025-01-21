@@ -5,14 +5,27 @@ from .models import Product
 banned_worlds = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция", "радар"]
 
 
+class ProductModeratorForm(ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ["is_published"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.get("is_published").widget.attrs.update({"class": "form-check"})
+
+
 class ProductForm(ModelForm):
 
     class Meta:
         model = Product
         fields = "__all__"
+        exclude = ["owner", "is_published"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         for field, value in self.fields.items():
             if field == "name":
                 value.widget.attrs.update({"placeholder": "Введите название товара"})
@@ -27,6 +40,8 @@ class ProductForm(ModelForm):
             if field == "price":
                 value.label = "Цена"
             value.widget.attrs.update({"class": "form-control"})
+            if field == "is_published":
+                value.widget.attrs.update({"class": "form-check"})
 
     def clean_price(self):
         price = self.cleaned_data.get("price")
