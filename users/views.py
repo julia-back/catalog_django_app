@@ -9,10 +9,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class UserRegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = "users/register.html"
-    success_url = reverse_lazy("users:login")
+    success_url = reverse_lazy("catalog:home")
 
     def form_valid(self, form):
         user = form.save()
