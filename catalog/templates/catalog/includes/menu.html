@@ -1,0 +1,45 @@
+<div class="text-bg-dark" style="height: 93vh;">
+    <div class="list-group">
+        <nav class="navbar bg-dark">
+            <div class="container">
+                <div class="navbar-brand text-light">
+                    <img src="/static/images/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
+                    Меню
+                </div>
+            </div>
+        </nav>
+        <a href="{% url 'catalog:home' %}" class="list-group-item list-group-item-action text-bg-dark border-dark">Главная</a>
+        <a href="{% url 'catalog:category_list' %}" class="list-group-item list-group-item-action text-bg-dark border-dark">Категория</a>
+        <a href="#" class="list-group-item list-group-item-action text-bg-dark border-dark">Заказы</a>
+        <a href="{% url 'catalog:contacts' %}" class="list-group-item list-group-item-action text-bg-dark border-dark">Контакты</a>
+    </div>
+</div>
+<div class="btn-group dropup d-flex" style="height: 7vh;">
+    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if user.is_authenticated %}
+        {{ user }}
+        {% else %}
+        Авторизоваться
+        {% endif %}
+    </button>
+    <ul class="dropdown-menu">
+        {% if user.is_authenticated %}
+        <li><a class="dropdown-item" href="#">Посмотреть профиль</a></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li>
+            <form method="post" action="{% url 'users:logout' %}" class="dropdown-item" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn">Выход</button>
+            </form>
+        </li>
+        {% else %}
+        <li><a class="dropdown-item" href="{% url 'users:login' %}">Вход</a></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="{% url 'users:register' %}">Регистрация</a></li>
+        {% endif %}
+    </ul>
+</div>
